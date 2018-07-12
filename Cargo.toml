@@ -1,0 +1,8 @@
+[package]
+name = "rusty-manga-memorial"
+version = "0.0.1"
+authors = ["Daniel"]
+
+[dependencies]
+reqwest = "0.8.6"
+scraper = "0.7.0"
