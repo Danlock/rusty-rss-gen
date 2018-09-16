@@ -1,0 +1,37 @@
+version: '3.7'
+
+volumes:
+  pg-volume:
+
+services:
+  nginx:
+    image: nginx:1.15.3
+    ports:
+     - "80:80"
+    restart: unless-stopped
+    depends_on:
+      - api
+    volumes:
+     - /etc/localtime:/etc/localtime:ro
+     - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+     - ./nginx/manga-memorial.conf:/etc/nginx/conf.d/manga-memorial.conf:ro
+
+  postgres:
+    image: postgres:10.5
+    restart: unless-stopped
+    ports:
+     - "27017:27017"
+    env_file: .env
+    volumes:
+      - pg-volume:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+  
+  api:
+    build:
+      context: ..
+    env_file: .env
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
