@@ -10,8 +10,7 @@ Pulls in data from several (arbitrary?) sources:
   https://nyaa.pantsu.cat/apidoc/ (Low users but easy to integrate)
 
 
-1. Scrape releases page of mangaupdates, store in memory for now
-
+1. Scrape releases page of mangaupdates
 SETUP:
 reqwest requires OpenSSL headers
 
